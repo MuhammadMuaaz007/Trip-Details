@@ -12,6 +12,43 @@ export default function FlightDetails() {
   const [flightOpen, setFlightOpen] = useState(true);
   const iconBadgeClass =
     "flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-full border border-none bg-linear-to-br from-[#FDC725] to-[#8B6D12] shadow-[0_18px_17px_0_#0000001A] backdrop-blur-[29.77px]";
+  const flightLegs = [
+    {
+      title: "Outbound Flight",
+      badge: ". A321",
+      status: "Direct",
+      departureTime: "11:20",
+      departureCode: "AMS",
+      duration: "3h 25m",
+      arrivalTime: "15:45",
+      arrivalCode: "BCN",
+      hasBottomBorder: true,
+    },
+    {
+      title: "Return Flight",
+      badge: ". A321",
+      status: "1 Stop",
+      departureTime: "11:20",
+      departureCode: "BCN",
+      duration: "3h 25m",
+      arrivalTime: "15:45",
+      arrivalCode: "AMS",
+      hasBottomBorder: false,
+    },
+  ];
+
+  const flightInfoRows = [
+    {
+      icon: Luggage,
+      label: "Baggage",
+      value: "1 cabin + 1 checked bag (23kg) included",
+    },
+    {
+      icon: ShieldCheck,
+      label: "Cabin class",
+      value: "Economy",
+    },
+  ];
 
   return (
     <div className="font-['Inter',sans-serif] overflow-hidden rounded-[22px] border border-[#d5e0e2] bg-white">
@@ -76,107 +113,73 @@ export default function FlightDetails() {
             </div>
 
             {/* Flight Legs */}
-            <div className="flex flex-col gap-2 px-9 py-3 border-b border-[#d5e0e2] ">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-1.5">
-                  <span className="text-[12px] uppercase tracking-[0.6px] text-[#57666b]">
-                    Outbound Flight
-                  </span>
-                  <span className="text-[12px] text-black/40">. A321</span>
-                </div>
-                <span className="text-sm font-medium text-[14px] text-[#00242f]">
-                  Direct
-                </span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="flex shrink-0 flex-col items-center gap-1">
-                  <span className="text-[20px] font-bold text-black">
-                    11:20
-                  </span>
-                  <span className="text-[15px] font-extrabold text-[#FDC725]">
-                    AMS
-                  </span>
-                </div>
-                <div className="flex-1 border-t border-[#d5e0e2]" />
-                <span className="shrink-0 text-[11px] text-black/45">
-                  3h 25m
-                </span>
-                <div className="flex-1 border-t border-[#d5e0e2]" />
-                <div className="flex shrink-0 flex-col items-center gap-1">
-                  <span className="text-[20px] font-bold text-black">
-                    15:45
-                  </span>
-                  <span className="text-[15px] font-extrabold text-[#FDC725]">
-                    BCN
+            {flightLegs.map((leg) => (
+              <div
+                key={leg.title}
+                className={`flex flex-col gap-2 px-9 py-3 ${
+                  leg.hasBottomBorder ? "border-b border-[#d5e0e2]" : ""
+                }`}
+              >
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-1.5">
+                    <span className="text-[12px] uppercase tracking-[0.6px] text-[#57666b]">
+                      {leg.title}
+                    </span>
+                    <span className="text-[12px] text-black/40">
+                      {leg.badge}
+                    </span>
+                  </div>
+                  <span className="text-sm font-medium text-[14px] text-[#00242f]">
+                    {leg.status}
                   </span>
                 </div>
-              </div>
-            </div>
-
-            <div className="flex flex-col gap-2 px-9 py-3">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-1.5">
-                  <span className="text-[12px] uppercase tracking-[0.6px] text-[#57666b]">
-                    Return Flight
+                <div className="flex items-center gap-2">
+                  <div className="flex shrink-0 flex-col items-center gap-1">
+                    <span className="text-[20px] font-bold text-black">
+                      {leg.departureTime}
+                    </span>
+                    <span className="text-[15px] font-extrabold text-[#FDC725]">
+                      {leg.departureCode}
+                    </span>
+                  </div>
+                  <div className="flex-1 border-t border-[#d5e0e2]" />
+                  <span className="shrink-0 text-[11px] text-black/45">
+                    {leg.duration}
                   </span>
-                  <span className="text-[12px] text-black/40">. A321</span>
-                </div>
-                <span className="text-sm font-medium text-[14px] text-[#00242f]">
-                  1 Stop
-                </span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="flex shrink-0 flex-col items-center gap-1">
-                  <span className="text-[20px] font-bold text-black">
-                    11:20
-                  </span>
-                  <span className="text-[15px] font-extrabold text-[#FDC725]">
-                    BCN
-                  </span>
-                </div>
-                <div className="flex-1 border-t border-[#d5e0e2]" />
-                <span className="shrink-0 text-[11px] text-black/45">
-                  3h 25m
-                </span>
-                <div className="flex-1 border-t border-[#d5e0e2]" />
-                <div className="flex shrink-0 flex-col items-center gap-1">
-                  <span className="text-[20px] font-bold text-black">
-                    15:45
-                  </span>
-                  <span className="text-[15px] font-extrabold text-[#FDC725]">
-                    AMS
-                  </span>
+                  <div className="flex-1 border-t border-[#d5e0e2]" />
+                  <div className="flex shrink-0 flex-col items-center gap-1">
+                    <span className="text-[20px] font-bold text-black">
+                      {leg.arrivalTime}
+                    </span>
+                    <span className="text-[15px] font-extrabold text-[#FDC725]">
+                      {leg.arrivalCode}
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
+            ))}
           </div>
 
-          {/* Baggage & Cabin */}
-          <div className="flex items-center gap-4 border-b border-[#d5e0e2] px-5 py-4">
-            <div className={iconBadgeClass}>
-              <Luggage size={15} color="white" strokeWidth={2} />
+          {flightInfoRows.map(({ icon: Icon, label, value }, index) => (
+            <div
+              key={label}
+              className={`flex items-center gap-4 px-5 ${
+                index === 0 ? "border-b border-[#d5e0e2] py-4" : "py-4.5"
+              }`}
+            >
+              <div className={iconBadgeClass}>
+                <Icon size={15} color="white" strokeWidth={2} />
+              </div>
+              <div>
+                <p className="m-0 text-[11px] uppercase tracking-[0.6px] text-[#57666b]">
+                  {label}
+                </p>
+                <p className="m-0 text-sm font-medium text-[#00242f]">
+                  {value}
+                </p>
+              </div>
             </div>
-            <div>
-              <p className="m-0 text-[11px] uppercase tracking-[0.6px] text-[#57666b]">
-                Baggage
-              </p>
-              <p className="m-0 text-sm font-medium text-[#00242f]">
-                1 cabin + 1 checked bag (23kg) included
-              </p>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-4 px-5 py-4.5">
-            <div className={iconBadgeClass}>
-              <ShieldCheck size={15} color="white" strokeWidth={2} />
-            </div>
-            <div>
-              <p className="m-0 text-[11px] uppercase tracking-[0.6px] text-[#57666b]">
-                Cabin class
-              </p>
-              <p className="m-0 text-sm font-medium text-[#00242f]">Economy</p>
-            </div>
-          </div>
+          ))}
         </>
       )}
     </div>
