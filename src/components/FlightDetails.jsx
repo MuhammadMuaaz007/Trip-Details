@@ -10,6 +10,8 @@ import {
 
 export default function FlightDetails() {
   const [flightOpen, setFlightOpen] = useState(true);
+  const iconBadgeClass =
+    "flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-full border border-none bg-linear-to-br from-[#FDC725] to-[#8B6D12] shadow-[0_18px_17px_0_#0000001A] backdrop-blur-[29.77px]";
 
   return (
     <div className="font-['Inter',sans-serif] overflow-hidden rounded-[22px] border border-[#d5e0e2] bg-white">
@@ -33,8 +35,8 @@ export default function FlightDetails() {
       {flightOpen && (
         <>
           {/* Airline Row */}
-          <div className="flex items-center gap-4 border-b border-t border-[#d5e0e2] px-5 py-4.5">
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-transparent bg-linear-to-br from-[#FDC725] to-[#8B6D12] shadow-[0_18px_17px_0_#0000001A] backdrop-blur-[29.77px]">
+          <div className="flex items-center gap-4  px-5 py-4.5">
+            <div className={iconBadgeClass}>
               <Plane size={15} color="white" strokeWidth={2} />
             </div>
             <div>
@@ -50,7 +52,7 @@ export default function FlightDetails() {
           {/* Departure/Arrival */}
           <div className="border-b border-[#d5e0e2]">
             <div className="flex items-center gap-4 px-5 py-4.5">
-              <div className="flex h-9 w-9  shrink-0 items-center justify-center rounded-full border-transparent bg-linear-to-br from-[#FDC725] to-[#8B6D12] shadow-[0_18px_17px_0_#0000001A] backdrop-blur-[29.77px]">
+              <div className={iconBadgeClass}>
                 <Clock size={15} color="white" strokeWidth={2} />
               </div>
               <div className="flex flex-1 gap-8 ">
@@ -95,11 +97,11 @@ export default function FlightDetails() {
                     AMS
                   </span>
                 </div>
-               <div className="flex-1 border-t border-[#d5e0e2]" />
+                <div className="flex-1 border-t border-[#d5e0e2]" />
                 <span className="shrink-0 text-[11px] text-black/45">
                   3h 25m
                 </span>
-           <div className="flex-1 border-t border-[#d5e0e2]" />
+                <div className="flex-1 border-t border-[#d5e0e2]" />
                 <div className="flex shrink-0 flex-col items-center gap-1">
                   <span className="text-[20px] font-bold text-black">
                     15:45
@@ -132,7 +134,7 @@ export default function FlightDetails() {
                     BCN
                   </span>
                 </div>
-              <div className="flex-1 border-t border-[#d5e0e2]" />
+                <div className="flex-1 border-t border-[#d5e0e2]" />
                 <span className="shrink-0 text-[11px] text-black/45">
                   3h 25m
                 </span>
@@ -151,7 +153,7 @@ export default function FlightDetails() {
 
           {/* Baggage & Cabin */}
           <div className="flex items-center gap-4 border-b border-[#d5e0e2] px-5 py-4">
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-transparent bg-linear-to-br from-[#FDC725] to-[#8B6D12] shadow-[0_18px_17px_0_#0000001A] backdrop-blur-[29.77px]">
+            <div className={iconBadgeClass}>
               <Luggage size={15} color="white" strokeWidth={2} />
             </div>
             <div>
@@ -165,8 +167,8 @@ export default function FlightDetails() {
           </div>
 
           <div className="flex items-center gap-4 px-5 py-4.5">
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-transparent   bg-linear-to-br from-[#FDC725] to-[#8B6D12] shadow-[0_18px_17px_0_#0000001A] backdrop-blur-[29.77px]">
-              <ShieldCheck  size={15} color="white" strokeWidth={2} />
+            <div className={iconBadgeClass}>
+              <ShieldCheck size={15} color="white" strokeWidth={2} />
             </div>
             <div>
               <p className="m-0 text-[11px] uppercase tracking-[0.6px] text-[#57666b]">
