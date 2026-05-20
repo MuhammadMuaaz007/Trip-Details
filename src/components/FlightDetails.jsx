@@ -12,6 +12,22 @@ export default function FlightDetails() {
   const [flightOpen, setFlightOpen] = useState(true);
   const iconBadgeClass =
     "flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-full border border-none bg-linear-to-br from-[#FDC725] to-[#8B6D12] shadow-[0_18px_17px_0_#0000001A] backdrop-blur-[29.77px]";
+  const flightSummaryRows = [
+    {
+      kind: "airline",
+      icon: Plane,
+      label: "Airline and flight",
+      value: "Lufthansa . LU1422",
+    },
+    {
+      kind: "schedule",
+      icon: Clock,
+      labelLeft: "Departure",
+      valueLeft: "2026-06-12 . 09:25",
+      labelRight: "Arrival",
+      valueRight: "2026-06-12 . 12:55",
+    },
+  ];
   const flightLegs = [
     {
       title: "Outbound Flight",
@@ -71,94 +87,105 @@ export default function FlightDetails() {
 
       {flightOpen && (
         <>
-          {/* Airline Row */}
-          <div className="flex items-center gap-4  px-5 py-4.5">
-            <div className={iconBadgeClass}>
-              <Plane size={15} color="white" strokeWidth={2} />
-            </div>
-            <div>
-              <p className="m-0 text-[12px] uppercase tracking-[0.6px] text-[#57666b]">
-                Airline and flight
-              </p>
-              <p className="m-0 text-sm font-medium text-[#00242f]">
-                Lufthansa . LU1422
-              </p>
-            </div>
-          </div>
+          {flightSummaryRows.map((row) => {
+            const Icon = row.icon;
 
-          {/* Departure/Arrival */}
-          <div className="border-b border-[#d5e0e2]">
-            <div className="flex items-center gap-4 px-5 py-4.5">
-              <div className={iconBadgeClass}>
-                <Clock size={15} color="white" strokeWidth={2} />
-              </div>
-              <div className="flex flex-1 gap-8 ">
-                <div className=" w-[50%]">
-                  <p className="m-0 text-[12px] uppercase tracking-[0.6px] text-[#57666b]">
-                    Departure
-                  </p>
-                  <p className="m-0 text-sm font-medium text-[#00242f]">
-                    2026-06-12 <span className="items-center ">.</span> 09:25
-                  </p>
+            if (row.kind === "airline") {
+              return (
+                <div
+                  key={row.kind}
+                  className="flex items-center gap-4 px-5 py-4.5"
+                >
+                  <div className={iconBadgeClass}>
+                    <Icon size={15} color="white" strokeWidth={2} />
+                  </div>
+                  <div>
+                    <p className="m-0 text-[12px] uppercase tracking-[0.6px] text-[#57666b]">
+                      {row.label}
+                    </p>
+                    <p className="m-0 text-sm font-medium text-[#00242f]">
+                      {row.value}
+                    </p>
+                  </div>
                 </div>
-                <div className=" w-[50%]">
-                  <p className="m-0 text-[12px] uppercase tracking-[0.6px] text-[#57666b]">
-                    Arrival
-                  </p>
-                  <p className="m-0 text-sm font-medium text-[#00242f]">
-                    2026-06-12 . 12:55
-                  </p>
-                </div>
-              </div>
-            </div>
+              );
+            }
 
-            {/* Flight Legs */}
-            {flightLegs.map((leg) => (
-              <div
-                key={leg.title}
-                className={`flex flex-col gap-2 px-9 py-3 ${
-                  leg.hasBottomBorder ? "border-b border-[#d5e0e2]" : ""
-                }`}
-              >
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-1.5">
-                    <span className="text-[12px] uppercase tracking-[0.6px] text-[#57666b]">
-                      {leg.title}
-                    </span>
-                    <span className="text-[12px] text-black/40">
-                      {leg.badge}
-                    </span>
+            return (
+              <div key={row.kind} className="border-b border-[#d5e0e2]">
+                <div className="flex items-center gap-4 px-5 py-4.5">
+                  <div className={iconBadgeClass}>
+                    <Icon size={15} color="white" strokeWidth={2} />
                   </div>
-                  <span className="text-sm font-medium text-[14px] text-[#00242f]">
-                    {leg.status}
-                  </span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="flex shrink-0 flex-col items-center gap-1">
-                    <span className="text-[20px] font-bold text-black">
-                      {leg.departureTime}
-                    </span>
-                    <span className="text-[15px] font-extrabold text-[#FDC725]">
-                      {leg.departureCode}
-                    </span>
-                  </div>
-                  <div className="flex-1 border-t border-[#d5e0e2]" />
-                  <span className="shrink-0 text-[11px] text-black/45">
-                    {leg.duration}
-                  </span>
-                  <div className="flex-1 border-t border-[#d5e0e2]" />
-                  <div className="flex shrink-0 flex-col items-center gap-1">
-                    <span className="text-[20px] font-bold text-black">
-                      {leg.arrivalTime}
-                    </span>
-                    <span className="text-[15px] font-extrabold text-[#FDC725]">
-                      {leg.arrivalCode}
-                    </span>
+                  <div className="flex flex-1 gap-8 ">
+                    <div className=" w-[50%]">
+                      <p className="m-0 text-[12px] uppercase tracking-[0.6px] text-[#57666b]">
+                        {row.labelLeft}
+                      </p>
+                      <p className="m-0 text-sm font-medium text-[#00242f]">
+                        {row.valueLeft}
+                      </p>
+                    </div>
+                    <div className=" w-[50%]">
+                      <p className="m-0 text-[12px] uppercase tracking-[0.6px] text-[#57666b]">
+                        {row.labelRight}
+                      </p>
+                      <p className="m-0 text-sm font-medium text-[#00242f]">
+                        {row.valueRight}
+                      </p>
+                    </div>
                   </div>
                 </div>
+
+                {/* Flight Legs */}
+                {flightLegs.map((leg) => (
+                  <div
+                    key={leg.title}
+                    className={`flex flex-col gap-2 px-9 py-3 ${
+                      leg.hasBottomBorder ? "border-b border-[#d5e0e2]" : ""
+                    }`}
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-1.5">
+                        <span className="text-[12px] uppercase tracking-[0.6px] text-[#57666b]">
+                          {leg.title}
+                        </span>
+                        <span className="text-[12px] text-black/40">
+                          {leg.badge}
+                        </span>
+                      </div>
+                      <span className="text-sm font-medium text-[14px] text-[#00242f]">
+                        {leg.status}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="flex shrink-0 flex-col items-center gap-1">
+                        <span className="text-[20px] font-bold text-black">
+                          {leg.departureTime}
+                        </span>
+                        <span className="text-[15px] font-extrabold text-[#FDC725]">
+                          {leg.departureCode}
+                        </span>
+                      </div>
+                      <div className="flex-1 border-t border-[#d5e0e2]" />
+                      <span className="shrink-0 text-[11px] text-black/45">
+                        {leg.duration}
+                      </span>
+                      <div className="flex-1 border-t border-[#d5e0e2]" />
+                      <div className="flex shrink-0 flex-col items-center gap-1">
+                        <span className="text-[20px] font-bold text-black">
+                          {leg.arrivalTime}
+                        </span>
+                        <span className="text-[15px] font-extrabold text-[#FDC725]">
+                          {leg.arrivalCode}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
+            );
+          })}
 
           {flightInfoRows.map(({ icon: Icon, label, value }, index) => (
             <div
