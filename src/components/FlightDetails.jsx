@@ -1,70 +1,15 @@
 import { useState } from "react";
+import { ChevronUp, ChevronDown } from "lucide-react";
 import {
-  Plane,
-  Clock,
-  ChevronUp,
-  ChevronDown,
-  Luggage,
-  ShieldCheck,
-} from "lucide-react";
+  flightSummaryRows,
+  flightLegs,
+  flightInfoRows,
+} from "../static-data/data";
 
 export default function FlightDetails() {
   const [flightOpen, setFlightOpen] = useState(true);
   const iconBadgeClass =
     "flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-full border border-none bg-linear-to-br from-[#FDC725] to-[#8B6D12] shadow-[0_18px_17px_0_#0000001A] backdrop-blur-[29.77px]";
-  const flightSummaryRows = [
-    {
-      kind: "airline",
-      icon: Plane,
-      label: "Airline and flight",
-      value: "Lufthansa . LU1422",
-    },
-    {
-      kind: "schedule",
-      icon: Clock,
-      labelLeft: "Departure",
-      valueLeft: "2026-06-12 . 09:25",
-      labelRight: "Arrival",
-      valueRight: "2026-06-12 . 12:55",
-    },
-  ];
-  const flightLegs = [
-    {
-      title: "Outbound Flight",
-      badge: ". A321",
-      status: "Direct",
-      departureTime: "11:20",
-      departureCode: "AMS",
-      duration: "3h 25m",
-      arrivalTime: "15:45",
-      arrivalCode: "BCN",
-      hasBottomBorder: true,
-    },
-    {
-      title: "Return Flight",
-      badge: ". A321",
-      status: "1 Stop",
-      departureTime: "11:20",
-      departureCode: "BCN",
-      duration: "3h 25m",
-      arrivalTime: "15:45",
-      arrivalCode: "AMS",
-      hasBottomBorder: false,
-    },
-  ];
-
-  const flightInfoRows = [
-    {
-      icon: Luggage,
-      label: "Baggage",
-      value: "1 cabin + 1 checked bag (23kg) included",
-    },
-    {
-      icon: ShieldCheck,
-      label: "Cabin class",
-      value: "Economy",
-    },
-  ];
 
   return (
     <div className="font-['Inter',sans-serif] overflow-hidden rounded-[22px] border border-[#d5e0e2] bg-white">
